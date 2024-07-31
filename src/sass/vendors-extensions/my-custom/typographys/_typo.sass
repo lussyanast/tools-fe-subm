@@ -1,13 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap')
+
 @mixin fontWightAndStyle
   font-weight: normal
   font-style: normal
 
 @font-face
-  font-family: 'Cinzel Decorative'
-  src: url('/public/font/CinzelDecorative-Regular.ttf') format('truetype')
+  font-family: 'Merienda'
+  src: url('https://fonts.gstatic.com/s/merienda/v10/gNMHW3x8Qoy7_f-3UuNClvFfKQ.woff2') format('woff2')
   @include fontWightAndStyle
 
 @font-face
-  font-family: 'Fuggles'
-  src: url('/public/font/Fuggles-Regular.ttf') format('truetype')
+  font-family: 'Calibri'
+  src: local('Calibri'), local('Calibri Regular'), url('https://fonts.gstatic.com/s/calibri/v10/gNMHW3x8Qoy7_f-3UuNClvFfKQ.woff2') format('woff2')
   @include fontWightAndStyle

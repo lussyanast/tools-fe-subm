@@ -20,7 +20,7 @@ class ListStory extends LitElement {
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-      background-color: #ffffff;
+      margin-bottom: 1rem;
     }
 
     .custom-card img {
@@ -32,27 +32,22 @@ class ListStory extends LitElement {
       padding: 1rem;
     }
 
-    .custom-card .card-title {
-      color: #4b0082;
-    }
-
-    .custom-card .badge {
-      background-color: #e0d4e4;
-      color: #4b0082;
-      display: inline-block;
-      margin-top: 0.5rem;
-      padding: 0.2rem 0.5rem;
-      font-size: 0.8rem;
-    }
-
     .alert {
       position: fixed;
       top: 1rem;
       left: 50%;
       transform: translateX(-50%);
       z-index: 1050;
-      background-color: #b181ac;
-      color: white;
+    }
+
+    .date {
+      background-color: #4b0082;
+      color: #ffffff; 
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.2rem 0.5rem;
+      font-size: 0.8rem;
+      border-radius: 5px; 
     }
   `;
 
@@ -100,6 +95,18 @@ class ListStory extends LitElement {
     }, 4000);
   }
 
+  formatDate(dateString) {
+    const options = { 
+      weekday: 'long', 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric', 
+      hour: 'numeric', 
+      minute: 'numeric' 
+    };
+    return new Date(dateString).toLocaleDateString('id-ID', options);
+  }
+
   render() {
     if (this.isLoading) {
       return html`
@@ -135,16 +142,7 @@ class ListStory extends LitElement {
 
         <div class="row pt-4">
           ${this.stories.map((story) => {
-            const options = {
-              weekday: 'long',
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-              hour: 'numeric',
-              minute: 'numeric'
-            };
-
-            const formattedDate = new Date(story.createdAt).toLocaleDateString('id-ID', options);
+            const formattedDate = this.formatDate(story.createdAt);
 
             return html`
               <div class="col-lg-4 col-md-6">
@@ -153,7 +151,7 @@ class ListStory extends LitElement {
                   <div class="card-body">
                     <h5 class="card-title">${story.name}</h5>
                     <p class="card-text">${story.description}</p>
-                    <span class="badge">${formattedDate}</span>
+                    <span class="date">${formattedDate}</span>
                   </div>
                 </div>
               </div>
