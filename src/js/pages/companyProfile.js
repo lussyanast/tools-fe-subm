@@ -22,18 +22,17 @@ class CompanyProfile extends LitElement {
     }
 
     h1 {
-      color:  purple;
+      color: purple;
     }
 
     p {
-      font-size: 1.2rem;
-      line-height: 1.6;
+      font-size: 1rem;
+      line-height: 1.4;
     }
 
     ul {
       margin-top: 1rem;
-      list-style-type: none;
-      padding-left: 0;
+      padding-left: 1rem;
     }
 
     li::before {
