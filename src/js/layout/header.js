@@ -1,15 +1,30 @@
-import { LitElement, html } from 'lit'
+import { LitElement, html, css } from 'lit';
 
 class StoryHeader extends LitElement {
   createRenderRoot() {
-    return this
+    return this;
   }
 
   render() {
     return html`
-      <nav class="navbar fixed-top navbar-expand-lg bg-dark">
+      <style>
+        .navbar-purple {
+          background-color: purple !important;
+        }
+
+        .navbar .nav-link,
+        .navbar .navbar-brand {
+          color: white !important;
+        }
+
+        .btn-primary {
+          background-color: purple !important;
+          border-color: purple !important;
+        }
+      </style>
+      <nav class="navbar fixed-top navbar-expand-lg navbar-purple">
         <div class="container-fluid">
-          <a class="navbar-brand main-title text-light" href="/">StorySphere</a>
+          <a class="navbar-brand main-title" href="/">StorySphere</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -24,17 +39,17 @@ class StoryHeader extends LitElement {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active text-light" aria-current="page" href="/company/companyProfile.html">BNZD Company</a>
+                <a class="nav-link active" aria-current="page" href="/company/companyProfile.html">About Us</a>
               </li>
             </ul>
             <a class="btn btn-primary text-capitalize" href="/story/addStory.html" role="button">
               <i class="bi bi-plus-circle me-1"></i>Created Story
             </a>
-            </form>
           </div>
         </div>
       </nav>
-    `
+    `;
   }
 }
-customElements.define('story-header', StoryHeader)
+
+customElements.define('story-header', StoryHeader);
