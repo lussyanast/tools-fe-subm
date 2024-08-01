@@ -4,70 +4,97 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>StorySphere</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.css" />
+    <style>
+      .navbar-purple {
+        background-color: purple !important;
+      }
+      .navbar .nav-link,
+      .navbar .navbar-brand {
+        color: white !important;
+      }
+      .btn-primary {
+        background-color: purple !important;
+        border-color: purple !important;
+      }
+      .card {
+        border: none;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .form-label {
+        font-weight: bold;
+      }
+      .toast-container {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1055;
+      }
+      h1 {
+        font-family: 'Comic Sans MS', cursive, sans-serif;
+        font-size: 2.5rem;
+        color: purple;
+      }
+    </style>
   </head>
   <body>
-    <div
-      aria-live="polite"
-      aria-atomic="true"
-      class="bg-body-secondary position-relative bd-example-toasts rounded-3"
-    >
-      <div class="toast-container top-0 end-0 p-3" id="toastPlacement">
+    <story-header></story-header>
+    <div aria-live="polite" aria-atomic="true" class="bg-body-secondary position-relative bd-example-toasts rounded-3">
+      <div class="toast-container" id="toastPlacement">
         <div class="toast text-bg-danger border-0" id="errorToast">
           <div class="toast-body"></div>
         </div>
       </div>
     </div>
 
-    <div
-      aria-live="polite"
-      aria-atomic="true"
-      class="bg-body-secondary position-relative bd-example-toasts rounded-3"
-    >
-      <div class="toast-container top-0 end-0 p-3" id="toastPlacement">
+    <div aria-live="polite" aria-atomic="true" class="bg-body-secondary position-relative bd-example-toasts rounded-3">
+      <div class="toast-container" id="toastPlacement">
         <div class="toast text-bg-success border-0" id="successToast">
           <div class="toast-body"></div>
         </div>
       </div>
     </div>
 
-    <main class="min-vh-100 d-flex">
-      <div class="m-auto container py-5">
+    <main class="min-vh-100 d-flex align-items-center justify-content-center">
+      <div class="container">
         <div class="row justify-content-center">
           <div class="col-12 col-md-6 col-lg-4">
-            <div class="card p-3">
+            <div class="card p-4">
               <h1 class="text-center">Login</h1>
 
               <form id="loginForm" novalidate>
                 <div class="mb-3">
                   <label for="validationCustomRecordEmail" class="form-label">Email</label>
-                  <input-with-validation
-                    type="text"
-                    inputId="validationCustomRecordEmail"
-                    invalidFeedbackMessage="Wajib diisi"
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="validationCustomRecordEmail"
                     required
-                  ></input-with-validation>
+                  />
+                  <div class="invalid-feedback">
+                    Wajib diisi.
+                  </div>
                 </div>
 
                 <div class="mb-3">
                   <label for="validationCustomPassword" class="form-label">Password</label>
-                  <div class="d-flex">
-                    <div class="flex-fill">
-                      <input-with-validation
-                        type="password"
-                        inputId="validationCustomPassword"
-                        invalidFeedbackMessage="Wajib diisi"
-                        required
-                        class="round-end"
-                      ></input-with-validation>
-                    </div>
-                    <div>
-                      <button
-                        type="button"
-                        class="btn btn-secondary btn-sm py-2 round"
-                        id="togglePasswordButton"
-                      >
-                        <span id="eyeIcon" class="bi bi-eye"></span>
-                      </button>
+                  <div class="input-group">
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="validationCustomPassword"
+                      required
+                    />
+                    <button
+                      type="button"
+                      class="btn btn-secondary btn-sm"
+                      id="togglePasswordButton"
+                    >
+                      <span id="eyeIcon" class="bi bi-eye"></span>
+                    </button>
+                    <div class="invalid-feedback">
+                      Wajib diisi.
                     </div>
                   </div>
                 </div>
@@ -94,5 +121,11 @@
         </div>
       </div>
     </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script type="module">
+      import Login from '../../js/pages/auth/login.js';
+    </script>
   </body>
 </html>

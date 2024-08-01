@@ -98,7 +98,7 @@ const Register = {
   },
 
   _goToLoginPage() {
-    window.location.href = '/auth/login.html'
+    window.location.href = '/auth/login.html';
   }
 }
 

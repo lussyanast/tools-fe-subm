@@ -40,16 +40,31 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      title: 'Dashboard',
       filename: 'index.html',
       template: path.resolve(__dirname, 'src/views/index.html')
     }),
     new HtmlWebpackPlugin({
+      title: 'Profil Perusahaan',
       filename: 'company/companyProfile.html',
       template: path.resolve(__dirname, 'src/views/company/companyProfile.html')
     }),
     new HtmlWebpackPlugin({
+      title: 'Tambah Story',
       filename: 'story/addStory.html',
       template: path.resolve(__dirname, 'src/views/story/addStory.html')
+    }),
+
+    // Auth pages
+    new HtmlWebpackPlugin({
+      title: 'Login',
+      filename: 'auth/login.html',
+      template: path.resolve(__dirname, 'src/views/auth/login.html')
+    }),
+    new HtmlWebpackPlugin({
+      title: 'Register',
+      filename: 'auth/register.html',
+      template: path.resolve(__dirname, 'src/views/auth/register.html')
     }),
 
     new CopyWebpackPlugin({
