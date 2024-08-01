@@ -3,20 +3,86 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>StorySphere | Company Profile</title>
+    <title>StorySphere</title>
+    <style>
+      .was-validated .form-control:invalid,
+      .was-validated .form-control:valid {
+        border-color: initial;
+      }
+    </style>
   </head>
 
   <body>
     <header>
       <story-header></story-header>
     </header>
-
     <main>
-      <add-story></add-story>
+      <div class="container-md mt-4">
+        <div class="card p-3">
+          <h2 class="text-center">Created Story</h2>
+          <div class="row g-3">
+            <form id="createStory" novalidate>
+              <div class="col mb-3">
+                <label for="validationTextArea" class="form-label">Deskripsi Story</label>
+                <textarea
+                  class="form-control"
+                  id="validationTextArea"
+                  placeholder="Required example textarea"
+                  required
+                  oninvalid="this.setCustomValidity('Tidak boleh kosong')"
+                  oninput="this.setCustomValidity('')"
+                ></textarea>
+                <div class="invalid-feedback">Wajib mengisi deskripsi.</div>
+              </div>
+              <div class="col mb-3">
+                <label for="validationFile" class="form-label">Gambar Story</label>
+                <input
+                  type="file"
+                  class="form-control"
+                  id="validationFile"
+                  aria-label="file example"
+                  required
+                  oninvalid="this.setCustomValidity('Tidak boleh kosong')"
+                  oninput="this.setCustomValidity('')"
+                />
+                <div class="invalid-feedback">Wajib mengunggah gambar.</div>
+              </div>
+              <div class="text-end d-grid mt-4">
+                <button class="btn btn-primary" type="submit" id="submitButton">
+                  Buat Story Baru
+                </button>
+                <button
+                  class="btn btn-primary d-none"
+                  aria-hidden="true"
+                  disabled
+                  id="loadingButton"
+                >
+                  <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                  <span role="status">Loading...</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </main>
 
     <footer>
       <story-footer></story-footer>
     </footer>
+
+    <script>
+      const form = document.getElementById('createStory');
+
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+
+        form.classList.add('was-validated');
+      }, false);
+    </script>
   </body>
+
 </html>
