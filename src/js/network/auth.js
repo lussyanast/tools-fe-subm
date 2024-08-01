@@ -1,5 +1,5 @@
 import axios from 'axios';
-import ApiEndpoint from './api-endpoint';
+import ApiEndpoint from '../config/api-endpoint';
 
 class Auth {
   static async login({ email, password }) {
