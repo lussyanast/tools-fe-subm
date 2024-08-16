@@ -44,12 +44,12 @@ class ListStory extends LitElement {
 
     .date {
       background-color: #4b0082;
-      color: #ffffff;
+      color: #ffffff; 
       display: inline-block;
       margin-top: 0.5rem;
       padding: 0.2rem 0.5rem;
       font-size: 0.8rem;
-      border-radius: 5px;
+      border-radius: 5px; 
     }
   `;
 
@@ -108,13 +108,13 @@ class ListStory extends LitElement {
   }
 
   formatDate(dateString) {
-    const options = {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
+    const options = { 
+      weekday: 'long', 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric', 
+      hour: 'numeric', 
+      minute: 'numeric' 
     };
     return new Date(dateString).toLocaleDateString('id-ID', options);
   }
@@ -152,7 +152,7 @@ class ListStory extends LitElement {
         </svg>
         <div>Berhasil mendapatkan data!</div>
       </div>
-  
+
       <div class="row pt-4">
         ${this.stories.map((story) => this.renderStoryCard(story))}
       </div>
@@ -161,19 +161,15 @@ class ListStory extends LitElement {
 
   renderStoryCard(story) {
     const formattedDate = this.formatDate(story.createdAt);
-  
+
     return html`
-      <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-        <div class="card custom-card">
+      <div class="col-lg-4 col-md-6">
+        <div class="card mb-4 custom-card">
           <img src="${story.photoUrl}" class="card-img-top" alt="gambar" />
           <div class="card-body">
             <h5 class="card-title">${story.name}</h5>
-            <span class="badge text-bg-primary p-1 rounded-pill">${formattedDate}</span>
-            <div class="mt-2">
-              <a class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modal-${story.id}">
-                <i class="bi bi-eye-fill me-1"></i>Lihat Detail
-              </a>
-            </div>
+            <p class="card-text">${story.description}</p>
+            <span class="date">${formattedDate}</span>
           </div>
         </div>
       </div>
@@ -202,7 +198,7 @@ class ListStory extends LitElement {
               <img src="${story.photoUrl}" class="card-img-top" alt="gambar" />
               <h5 class="modal-title">${story.name}</h5>
               <p class="modal-text">${story.description}</p>
-              <span class="badge text-bg-primary p-1 rounded-pill">${formattedDate}</span>
+              <span class="date">${formattedDate}</span>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>

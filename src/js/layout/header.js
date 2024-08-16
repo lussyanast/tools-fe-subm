@@ -5,16 +5,6 @@ class StoryHeader extends LitElement {
     return this;
   }
 
-  handleLogout() {
-    localStorage.removeItem('authToken');
-
-    window.location.href = '/auth/login.html';
-  }
-
-  isLoggedIn() {
-    return localStorage.getItem('authToken') !== null;
-  }
-
   render() {
     return html`
       <style>
@@ -55,15 +45,6 @@ class StoryHeader extends LitElement {
             <a class="btn btn-primary text-capitalize" href="/story/addStory.html" role="button">
               <i class="bi bi-plus-circle me-1"></i>Created Story
             </a>
-            ${
-              this.isLoggedIn()
-                ? html`
-                    <button @click="${this.handleLogout}" class="btn btn-secondary ms-2">
-                      Logout
-                    </button>
-                  `
-                : ''
-            }
           </div>
         </div>
       </nav>
