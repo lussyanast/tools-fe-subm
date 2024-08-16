@@ -11,7 +11,6 @@ import Login from './pages/auth/login'
 import Register from './pages/auth/register'
 
 const routes = {
-    '/': Dashboard,
     '/story/addStory.html': Add,
 
     '/auth/login.html': Login,

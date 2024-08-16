@@ -5,7 +5,7 @@ class Auth {
   static async login({ email, password }) {
     try {
       const response = await axios.post(ApiEndpoint.LOGIN, { email, password });
-      return response.data;
+      return response;
     } catch (error) {
       throw error;
     }
@@ -14,7 +14,7 @@ class Auth {
   static async register({ name, email, password }) {
     try {
       const response = await axios.post(ApiEndpoint.REGISTER, { name, email, password });
-      return response.data;
+      return response; 
     } catch (error) {
       throw error;
     }
