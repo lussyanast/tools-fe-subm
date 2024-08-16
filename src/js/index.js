@@ -5,8 +5,8 @@ import './layout/footer'
 
 import './pages/listStory'
 import './pages/companyProfile'
-import './story/addStory'
 
+import Add from './story/addStory'
 import Login from './pages/auth/login'
 import Register from './pages/auth/register'
 

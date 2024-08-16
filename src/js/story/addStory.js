@@ -9,7 +9,6 @@ const AddStory = {
 
   async init() {
     CheckUserAuth.checkLoginState()
-
     this._initialListener()
   },
 
@@ -22,6 +21,7 @@ const AddStory = {
         event.stopPropagation()
 
         await this._createNewStory()
+        this._goToHomePage() 
       },
       false
     )
@@ -31,35 +31,45 @@ const AddStory = {
     const submitButton = document.getElementById('submitButton')
     const loadingButton = document.getElementById('loadingButton')
     const formData = this._getFormData()
-
+  
     if (this._validateFormData({ ...formData })) {
       try {
         submitButton.classList.add('d-none')
         loadingButton.classList.remove('d-none')
-
+  
         const response = await EndpointStory.createNewStory({
           photo: formData.photo,
           description: formData.description
         })
-
-        const successToast = new bootstrap.Toast(document.getElementById('successToast'))
-        successToast.show()
-
-        const successToastBody = document.querySelector('#successToast .toast-body')
-        successToastBody.textContent = response.data.message
-
-        this._goToDashboardPage()
+  
+        const successToastElement = document.getElementById('successToast')
+        if (successToastElement) {
+          const successToast = new bootstrap.Toast(successToastElement)
+          successToast.show()
+  
+          const successToastBody = document.querySelector('#successToast .toast-body')
+          successToastBody.textContent = response.data.message
+        }
+  
       } catch (error) {
         submitButton.classList.remove('d-none')
         loadingButton.classList.add('d-none')
-        const errorToast = new bootstrap.Toast(document.getElementById('errorToast'))
-        errorToast.show()
-
-        const errorToastBody = document.querySelector('#errorToast .toast-body')
-        errorToastBody.textContent = error.response.data.message
+  
+        const errorToastElement = document.getElementById('errorToast')
+        if (errorToastElement) {
+          const errorToast = new bootstrap.Toast(errorToastElement)
+          errorToast.show()
+  
+          const errorToastBody = document.querySelector('#errorToast .toast-body')
+          if (errorToastBody && error.response && error.response.data) {
+            errorToastBody.textContent = error.response.data.message
+          } else {
+            errorToastBody.textContent = 'An error occurred.'
+          }
+        }
       }
     }
-  },
+  },  
 
   _getFormData() {
     const photo = document.querySelector('#validationFile')
@@ -79,7 +89,7 @@ const AddStory = {
     return formDataFiltered.length === 0
   },
 
-  _goToDashboardPage() {
+  _goToHomePage() {
     window.location.href = '/'
   }
 }
