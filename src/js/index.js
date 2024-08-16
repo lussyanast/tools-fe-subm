@@ -16,10 +16,3 @@ const routes = {
     '/auth/login.html': Login,
     '/auth/register.html': Register
 }
-
-const detectRoute = () => routes[window.location.pathname]
-
-window.addEventListener('DOMContentLoaded', async () => {
-    const route = detectRoute()
-    route.init()
-})

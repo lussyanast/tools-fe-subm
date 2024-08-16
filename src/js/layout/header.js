@@ -1,8 +1,30 @@
 import { LitElement, html } from 'lit';
+import Utils from '../utils/utils';
+import Config from '../config/config';
+import CheckUserAuth from '../pages/auth/check-user-auth';
 
 class StoryHeader extends LitElement {
   createRenderRoot() {
     return this;
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    CheckUserAuth.checkLoginState(); // Memastikan status login pengguna saat komponen di-load
+  }
+
+  _userLogOut(event) {
+    event.preventDefault();
+
+    try {
+      Utils.hilangkanNamaPengguna(); // Menghapus nama pengguna dari penyimpanan lokal
+      Utils.hilangkanTokenPengguna(Config.USER_TOKEN_KEY); // Menghapus token pengguna dari penyimpanan lokal
+      CheckUserAuth.checkLoginState(); // Memverifikasi ulang status login setelah logout
+    } catch (error) {
+      console.error(error);
+    }
+
+    window.location.href = '/auth/login.html'; // Redirect ke halaman login setelah logout
   }
 
   render() {
@@ -45,6 +67,9 @@ class StoryHeader extends LitElement {
             <a class="btn btn-primary text-capitalize" href="/story/addStory.html" role="button">
               <i class="bi bi-plus-circle me-1"></i>Created Story
             </a>
+            <button @click="${this._userLogOut}" class="btn btn-secondary ms-2">
+              Logout
+            </button>
           </div>
         </div>
       </nav>
