@@ -173,39 +173,6 @@ class ListStory extends LitElement {
           </div>
         </div>
       </div>
-      ${this.renderStoryModal(story, formattedDate)}
-    `;
-  }
-
-  renderStoryModal(story, formattedDate) {
-    return html`
-      <div
-        class="modal fade"
-        id="modal-${story.id}"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
-        tabindex="-1"
-        aria-labelledby="modal-${story.id}-label"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-4" id="modal-${story.id}-label">Detail Story</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <img src="${story.photoUrl}" class="card-img-top" alt="gambar" />
-              <h5 class="modal-title">${story.name}</h5>
-              <p class="modal-text">${story.description}</p>
-              <span class="date">${formattedDate}</span>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-            </div>
-          </div>
-        </div>
-      </div>
     `;
   }
 

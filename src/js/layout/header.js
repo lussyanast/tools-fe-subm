@@ -10,21 +10,21 @@ class StoryHeader extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    CheckUserAuth.checkLoginState(); // Memastikan status login pengguna saat komponen di-load
+    CheckUserAuth.checkLoginState();
   }
 
   _userLogOut(event) {
     event.preventDefault();
 
     try {
-      Utils.hilangkanNamaPengguna(); // Menghapus nama pengguna dari penyimpanan lokal
-      Utils.hilangkanTokenPengguna(Config.USER_TOKEN_KEY); // Menghapus token pengguna dari penyimpanan lokal
-      CheckUserAuth.checkLoginState(); // Memverifikasi ulang status login setelah logout
+      Utils.hilangkanNamaPengguna();
+      Utils.hilangkanTokenPengguna(Config.USER_TOKEN_KEY);
+      CheckUserAuth.checkLoginState();
     } catch (error) {
       console.error(error);
     }
 
-    window.location.href = '/auth/login.html'; // Redirect ke halaman login setelah logout
+    window.location.href = '/auth/login.html';
   }
 
   render() {
